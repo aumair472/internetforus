@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 246 40" role="img" aria-label="internetforus">
+  <title>internetforus</title>
+  <rect y="2" width="36" height="36" rx="8.5" fill="#0066d4"/>
+  <g fill="none" stroke="#ffffff" stroke-width="2.9" stroke-linecap="round">
+    <path d="M8.6 16.3a11.8 11.8 0 0 1 16.8 0"/>
+    <path d="M12.8 21.4a6.2 6.2 0 0 1 8.5 0"/>
+  </g>
+  <circle cx="17" cy="26.2" r="2.1" fill="#ffffff"/>
+  <text x="48" y="28.5"
+        font-family="'Plus Jakarta Sans','Segoe UI Variable','Segoe UI',system-ui,-apple-system,Helvetica,Arial,sans-serif"
+        font-size="25" font-weight="800" letter-spacing="-0.8">
+    <tspan fill="#0d1222">internet</tspan><tspan fill="#0066d4">forus</tspan>
+  </text>
+</svg>
