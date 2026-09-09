@@ -56,6 +56,22 @@ mkdir -p assets/screenshots
 Set `--window-size` height to the page's full `document.documentElement.scrollHeight` at that
 width to capture the whole page.
 
+## Editing CSS or JS — bump the cache version
+
+`.htaccess` caches CSS and JS for a year, so returning visitors will not see a change to
+`style.css` or `main.js` until the URL changes. Both are linked with a version query string:
+
+```html
+<link rel="stylesheet" href="css/style.css?v=2">
+<script src="js/main.js?v=2"></script>
+```
+
+**Bump `?v=` in both `index.html` and `privacy.html` every time you edit either file.** HTML
+itself is served uncached, so the new HTML immediately points browsers at the new asset URL.
+
+The same applies to images: replacing `hero.jpg` in place will not reach anyone who has already
+loaded it — give the replacement a new filename instead.
+
 ## Changing the phone number
 
 Every phone CTA on both pages is driven by one constant at the top of `js/main.js`:

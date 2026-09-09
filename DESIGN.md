@@ -307,6 +307,12 @@ It also forces HTTPS (skipped when `X-Forwarded-Proto: https` is already set, so
 TLS termination doesn't cause a loop), sets far-future caching on static assets while keeping
 HTML uncached, and enables gzip.
 
+**Cache busting.** Because CSS and JS are cached for a year under stable filenames, both are
+linked with a `?v=N` query string. Bump `N` in both HTML files whenever either asset changes —
+HTML is uncached, so the new markup immediately points browsers at the new URL. Without this,
+a returning visitor keeps the old stylesheet until the cache expires. Replacement images need a
+new filename for the same reason.
+
 ---
 
 ## 7. Contact number
