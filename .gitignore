@@ -9,3 +9,6 @@
 
 # Logs
 *.log
+
+# Regenerable reference captures (see README)
+assets/screenshots/

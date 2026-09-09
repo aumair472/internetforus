@@ -10,7 +10,8 @@ three class namespaces (`alusa-*` marketing sections, `alu-*` informational sect
 checker). The design system below was extracted from that CSS, so the values are the source's
 actual values rather than approximations from screenshots.
 
-Reference captures live in `assets/screenshots/` at 1440px and 375px for both pages.
+Reference captures are generated locally rather than committed — see the README for the
+capture command. They go stale on every design change, so regenerate rather than trust an old one.
 
 ---
 
@@ -26,16 +27,17 @@ A two-part lockup: a **signal tile** plus the **internetforus wordmark**.
   dot at `2.6` stroke width with round caps. Two arcs rather than the conventional three, so the
   mark stays legible down to 16px.
 - **Wordmark** — Plus Jakarta Sans 800, `-0.6px` tracking, split two-tone:
-  `internet` in `#0d1222` and `forus` in `--brand` `#0066d4`. Set as live text in the header
-  (not an image) so it renders in the page's own webfont and stays crisp at any zoom.
+  `internet` in `#0d1222` and `forus` in `--brand` `#0066d4`. Held in `assets/logo.svg` for use
+  off-site; **the header deliberately shows the tile alone**, with the brand name carried by the
+  link's `aria-label` so the mark stays the only element competing with the CTA.
 
 | State | Behaviour |
 |---|---|
-| Rest | Tile at 38px with `0 2px 8px rgba(0,102,212,.22)` |
-| Hover | Whole lockup lifts `1px`, tile shadow deepens to `0 5px 16px rgba(0,102,212,.34)`, `internet` shifts to brand blue |
+| Rest | Tile at 42px with `0 2px 8px rgba(0,102,212,.22)` |
+| Hover | Lifts `1px`, tile shadow deepens to `0 5px 16px rgba(0,102,212,.34)` |
 | Active | Returns to rest |
-| ≤767px | Tile 30px, wordmark 18px |
-| ≤480px | Wordmark 16.5px |
+| ≤767px | Tile 36px |
+| ≤480px | Tile 34px |
 
 `assets/logo.svg` holds the same lockup as a standalone file (246×40) for use outside the site.
 
@@ -190,7 +192,7 @@ all, plus a flat `#34a2e2` pill on the right. Per the brief it was replaced with
 | Rest | `position: sticky`, `rgba(255,255,255,.92)`, transparent bottom border |
 | Scrolled (`>10px`) | `.is-scrolled` → `rgba(255,255,255,.72)` + `backdrop-filter: blur(14px) saturate(180%)`, `1px` bottom border in `--line`, soft shadow |
 | No `backdrop-filter` support | `@supports not` fallback to opaque `rgba(255,255,255,.98)` |
-| Logo hover | lockup lifts `1px`, tile shadow deepens, `internet` turns brand blue |
+| Logo hover | tile lifts `1px`, shadow deepens |
 | CTA hover | `--sky-dark`, `translateY(-1px)`, deepened shadow |
 | CTA active | `translateY(0)`, shadow returns to rest |
 | Focus | 3px `--sky` ring, 2px offset (global `:focus-visible`) |
@@ -287,7 +289,27 @@ Measure is capped at 72ch with `1.9` line-height for readability.
 
 ---
 
-## 6. Contact number
+## 6. URLs
+
+Both pages are linked by clean, extensionless paths — never `.html`:
+
+| Page | Canonical URL | File |
+|---|---|---|
+| Home | `/` | `index.html` |
+| Privacy policy | `/privacy-policy` | `privacy.html` |
+
+`.htaccess` (Apache/LiteSpeed, which is what Hostinger runs) enforces this: it 301s
+`/index.html` → `/` and `/privacy.html` → `/privacy-policy`, then internally serves
+`privacy.html` for the clean path. The redirect rules match on `THE_REQUEST` — the original
+request line — so the internal rewrite cannot re-trigger them and loop.
+
+It also forces HTTPS (skipped when `X-Forwarded-Proto: https` is already set, so the CDN's
+TLS termination doesn't cause a loop), sets far-future caching on static assets while keeping
+HTML uncached, and enables gzip.
+
+---
+
+## 7. Contact number
 
 Every phone CTA across both pages is driven by **one constant** at the top of `js/main.js`:
 
@@ -303,7 +325,7 @@ also marked `[data-label-from-hotline]`. Changing the number is a one-line edit.
 
 ---
 
-## 7. Accessibility
+## 8. Accessibility
 
 - Skip link to `#main` on both pages
 - `:focus-visible` ring (3px `--sky`, 2px offset) on every interactive element
@@ -311,6 +333,6 @@ also marked `[data-label-from-hotline]`. Changing the number is a one-line edit.
   restored to the trigger on close
 - ZIP errors announced via `role="alert"` + `aria-live="polite"`, field marked `aria-invalid`
 - FAQ uses native `<details>` so it works without JavaScript
-- Decorative SVGs are `aria-hidden="true"`; the logo tile is `aria-hidden` with the
-  wordmark as real text, and the link carries `aria-label="internetforus — home"`
+- Decorative SVGs are `aria-hidden="true"`; the header logo has no visible text, so its link
+  carries `aria-label="internetforus — home"` as the accessible name
 - `prefers-reduced-motion` disables smooth scrolling and collapses transitions

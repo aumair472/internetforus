@@ -15,8 +15,7 @@ self-contained vanilla HTML, CSS and JavaScript. No frameworks, no build step, n
     ├── logo.svg        Full horizontal logo lockup
     ├── favicon.svg     Signal-tile mark
     ├── hero.jpg        Hero photograph
-    ├── deal-*.{webp,png}
-    └── screenshots/    Reference captures at 1440px and 375px
+    └── deal-*.{webp,png}
 ```
 
 ## Running locally
@@ -29,6 +28,33 @@ python3 -m http.server 8000
 
 Then open <http://localhost:8000>. Opening `index.html` via `file://` also works, though the
 Google Fonts request needs a network connection either way.
+
+## URLs
+
+Pages are served at clean, extensionless paths. `.htaccess` 301s the `.html` forms away:
+
+| Page | URL | File |
+| --- | --- | --- |
+| Home | `/` | `index.html` |
+| Privacy policy | `/privacy-policy` | `privacy.html` |
+
+Link internally to `/` and `/privacy-policy` — never to `index.html` or `privacy.html`.
+
+## Reference screenshots
+
+Not committed, since they go stale on every design change. Regenerate with the local server
+running:
+
+```bash
+CHROME="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+mkdir -p assets/screenshots
+"$CHROME" --headless --disable-gpu --hide-scrollbars \
+  --screenshot=assets/screenshots/home-desktop.png --window-size=1440,8962 \
+  --virtual-time-budget=8000 http://localhost:8000/index.html
+```
+
+Set `--window-size` height to the page's full `document.documentElement.scrollHeight` at that
+width to capture the whole page.
 
 ## Changing the phone number
 

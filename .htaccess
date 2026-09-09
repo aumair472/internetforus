@@ -1,0 +1,56 @@
+# ---------------------------------------------------------------------------
+# internetforus.com — Apache / LiteSpeed config (Hostinger)
+# ---------------------------------------------------------------------------
+
+DirectoryIndex index.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # --- Canonical host: force HTTPS -----------------------------------------
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+  # --- Strip /index.html so the home page is just "/" -----------------------
+  # THE_REQUEST holds the original request line, so internal rewrites below
+  # never re-trigger these rules (no redirect loop).
+  RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+  RewriteRule ^ / [R=301,L]
+
+  # --- Retire the .html privacy URL in favour of /privacy-policy ------------
+  RewriteCond %{THE_REQUEST} \s/+privacy\.html[\s?] [NC]
+  RewriteRule ^ /privacy-policy [R=301,L]
+
+  # --- Serve the clean URL from the actual file ----------------------------
+  RewriteRule ^privacy-policy/?$ privacy.html [L]
+
+  # --- Generic: allow any other page to drop its .html extension -----------
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}\.html -f
+  RewriteRule ^(.+?)/?$ $1.html [L]
+</IfModule>
+
+# --- Caching ---------------------------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html            "access plus 0 seconds"
+  ExpiresByType text/css             "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/jpeg           "access plus 1 year"
+  ExpiresByType image/png            "access plus 1 year"
+  ExpiresByType image/webp           "access plus 1 year"
+  ExpiresByType image/svg+xml        "access plus 1 year"
+</IfModule>
+
+# --- Compression -----------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain
+  AddOutputFilterByType DEFLATE application/javascript image/svg+xml
+</IfModule>
+
+# --- Security headers ------------------------------------------------------
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
