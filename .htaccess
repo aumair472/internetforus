@@ -18,12 +18,9 @@ DirectoryIndex index.html
   RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
   RewriteRule ^ / [R=301,L]
 
-  # --- Retire the .html privacy URL in favour of /privacy-policy ------------
-  RewriteCond %{THE_REQUEST} \s/+privacy\.html[\s?] [NC]
-  RewriteRule ^ /privacy-policy [R=301,L]
-
-  # --- Serve the clean URL from the actual file ----------------------------
-  RewriteRule ^privacy-policy/?$ privacy.html [L]
+  # --- Redirect /privacy-policy and /privacy.html to on-page summary -------
+  RewriteCond %{THE_REQUEST} \s/+(privacy\.html|privacy-policy)[\s?] [NC]
+  RewriteRule ^ /#privacy-policy [R=301,L,NE]
 
   # --- Generic: allow any other page to drop its .html extension -----------
   RewriteCond %{REQUEST_FILENAME} !-d

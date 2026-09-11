@@ -36,9 +36,9 @@ Pages are served at clean, extensionless paths. `.htaccess` 301s the `.html` for
 | Page | URL | File |
 | --- | --- | --- |
 | Home | `/` | `index.html` |
-| Privacy policy | `/privacy-policy` | `privacy.html` |
+| Privacy Policy Summary | `/#privacy-policy` | `index.html` |
 
-Link internally to `/` and `/privacy-policy` — never to `index.html` or `privacy.html`.
+Internal links to the privacy policy point to `/#privacy-policy`. `/privacy-policy` redirects to `/#privacy-policy`.
 
 ## Reference screenshots
 

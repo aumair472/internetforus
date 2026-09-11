@@ -126,13 +126,11 @@ Three families are referenced by the source; all three are loaded here from Goog
 
 | Family | Weights | Where |
 |---|---|---|
-| **Open Sans** | 400 / 600 / 700 / 800 | Hero, plans, deals, services, difference, legal (`--font-sans`) |
-| **Outfit** | 400 / 600 / 700 / 800 | ZIP checker, modals, informational sections, FAQ (`--font-alt`) |
-| **Plus Jakarta Sans** | 300 / 500 / 600 / 700 / 800 | Footer and privacy policy (`--font-brand`) |
+| **Plus Jakarta Sans** | 300 / 400 / 500 / 600 / 700 / 800 | All headings (H1–H6), titles, footer, privacy summary (`--font-brand`) |
+| **Open Sans** | 400 / 600 / 700 / 800 | Body text, header, descriptions, marketing buttons & pills (`--font-sans`) |
+| **Outfit** | 400 / 600 / 700 / 800 | ZIP checker inputs/buttons, stat numbers/labels, FAQ questions (`--font-alt`) |
 
-> **Deliberate deviation:** every `alu-*` rule in the source asks for `'Outfit', sans-serif`, but
-> the source never loads Outfit — so those sections currently render in the browser's default
-> sans-serif. This build loads Outfit properly, which is what the original CSS intended.
+> Matches the exact live typography of `alllinkusa.com`, where `Plus Jakarta Sans` drives all prominent titles, headings, and footer branding, while `Open Sans` and `Outfit` provide clean readability for body text and interactive components.
 
 ### Scale
 
@@ -275,32 +273,33 @@ Grid behaviour: plans 3→1 at ≤1024px · deals 2→1 at ≤1024px · differen
 guidance 3→2→1 · steps 4→2→1 · pills 4-across→2→1. The stats strip **stays 3-up on mobile**,
 matching the source.
 
-### Privacy Policy — `privacy.html`
+### Privacy Policy Summary — On-Page (`#privacy-policy`)
 
-`<h1>` → eight `<h3>` sections, with **no `<h2>` and no table of contents** — this mirrors the
-source's heading structure exactly rather than "correcting" it.
-
-1. Information We Collect · 2. How We Use Your Information · 3. Sharing Your Information ·
-4. SMS Messaging · 5. Cookies and Tracking Technologies · 6. Data Security · 7. Your Rights ·
-8. Policy Updates
-
-Preceded by an effective-date pill (`29/05/2025`) and the ZAZ International Inc. intro paragraph.
-Measure is capped at 72ch with `1.9` line-height for readability.
+Integrated directly into `index.html` at the bottom of the page before the footer:
+- Distinct header with `Privacy & Data Protection` badge and summary intro.
+- 6 summary cards in a 3-column responsive grid covering:
+  1. Information We Collect
+  2. How We Use Information
+  3. Zero Data Sale & Sharing
+  4. Telephone & SMS Terms
+  5. Cookies & Analytics
+  6. Security & Your Rights
+- Bottom banner displaying the Effective Date (`September 11, 2026`) and direct contact buttons (`info@internetforus.com` and hotline call button).
+- Footer link smoothly scrolls directly to `#privacy-policy`.
 
 ---
 
 ## 6. URLs
 
-Both pages are linked by clean, extensionless paths — never `.html`:
+The website uses clean URLs:
 
 | Page | Canonical URL | File |
 |---|---|---|
 | Home | `/` | `index.html` |
-| Privacy policy | `/privacy-policy` | `privacy.html` |
+| Privacy Policy Summary | `/#privacy-policy` | `index.html` |
 
 `.htaccess` (Apache/LiteSpeed, which is what Hostinger runs) enforces this: it 301s
-`/index.html` → `/` and `/privacy.html` → `/privacy-policy`, then internally serves
-`privacy.html` for the clean path. The redirect rules match on `THE_REQUEST` — the original
+`/index.html` → `/` and `/privacy.html` or `/privacy-policy` → `/#privacy-policy`. The redirect rules match on `THE_REQUEST` — the original
 request line — so the internal rewrite cannot re-trigger them and loop.
 
 It also forces HTTPS (skipped when `X-Forwarded-Proto: https` is already set, so the CDN's
