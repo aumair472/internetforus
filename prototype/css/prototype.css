@@ -1,0 +1,105 @@
+/* ==========================================================================
+   Prototype scaffold — everything specific to the "flattened section image
+   + invisible hotspot" technique. Design tokens, modal styling, .zip-error
+   etc. come from ../css/style.css, reused unchanged (see index.html).
+   ========================================================================== */
+
+body {
+  margin: 0;
+  background: #fff;
+}
+
+img, picture { max-width: 100%; }
+
+/* Each section is one flattened screenshot, full width, with any real
+   interactive controls floated on top as transparent, labelless boxes
+   positioned by the generated percentages in hotspots.generated.css. */
+.proto-section {
+  position: relative;
+  width: 100%;
+  line-height: 0; /* kill the inline-image baseline gap */
+}
+
+.proto-section picture,
+.proto-section img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Most sections put their max-width on an INNER wrapper (.section-inner,
+   .hero-container, .footer-shell, …), so the section element itself spans
+   the full viewport and the captured image already includes the white
+   side margins. But .info sections and .privacy-summary put max-width
+   directly on the section element — Puppeteer's element screenshot
+   captured only that narrower content box (1100/900/1200px), with none of
+   the surrounding whitespace baked in. Left at width:100% those images
+   would stretch edge-to-edge on a wide viewport instead of sitting
+   centered like they do live, so the wrapper needs the same constraint
+   the original section had. Reuses the tokens already defined in
+   ../css/style.css — not new numbers. */
+.proto-section[data-section="what-we-do"],
+.proto-section[data-section="guidance"],
+.proto-section[data-section="how-it-works"],
+.proto-section[data-section="why-independent"] {
+  max-width: var(--mid);
+  margin: 0 auto;
+}
+
+.proto-section[data-section="what-we-dont-do"],
+.proto-section[data-section="faq"] {
+  max-width: var(--narrow);
+  margin: 0 auto;
+}
+
+.proto-section[data-section="privacy-policy"] {
+  max-width: var(--wide);
+  margin: 0 auto;
+}
+
+/* Base hotspot reset. Exact position/size per breakpoint comes from
+   hotspots.generated.css — never hand-typed, regenerate with
+   scripts/build-hotspot-css.mjs whenever scripts/capture-sections.mjs
+   produces a new hotspots.json. */
+.hotspot {
+  position: absolute;
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hotspot:focus-visible {
+  outline: 2px solid rgba(52, 162, 226, .9);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* The ZIP input needs to actually accept keystrokes but stay invisible —
+   the flattened image already shows the empty "Enter ZIP code" state. */
+input.hotspot {
+  color: transparent;
+  caret-color: #0066d4;
+  font: 16px/1 sans-serif; /* real font size so mobile doesn't auto-zoom on focus */
+  text-align: left;
+}
+input.hotspot::placeholder {
+  color: transparent;
+}
+
+/* The ZIP error message has no baked-in equivalent in the flattened image
+   (it only appears on invalid input) — render it in normal flow right
+   below the section, reusing the live site's own .zip-error styling.
+   .proto-section sets line-height:0 to kill the image baseline gap; reset
+   it here or the error text collapses/overlaps. */
+.proto-section .zip-error {
+  position: static;
+  line-height: 1.4;
+  max-width: 760px;
+  margin: 8px auto 0;
+  padding: 0 20px;
+  text-align: center;
+}

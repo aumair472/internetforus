@@ -1,0 +1,9 @@
+{
+  "name": "internetforus-prototype-tools",
+  "private": true,
+  "description": "Dev-only tooling to generate the offline prototype's section screenshots. Not deployed.",
+  "type": "module",
+  "dependencies": {
+    "puppeteer-core": "^23.0.0"
+  }
+}

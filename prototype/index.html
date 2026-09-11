@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Internet For Us — Offline Prototype</title>
+<!-- Demo artifact only: not deployed to internetforus.com, not linked from
+     the live site. This tag is a belt-and-suspenders safety net in case the
+     link is ever shared. -->
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;500;600;700;800&display=swap">
+<!-- Reused as-is from the live site: design tokens, modal styling,
+     .zip-error styling, .hotline-btn, etc. -->
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="css/prototype.css">
+<link rel="stylesheet" href="css/hotspots.generated.css">
+</head>
+<body>
+
+<main id="main">
+
+<!-- ==================== HEADER ==================== -->
+<section class="proto-section" data-section="header">
+  <picture>
+    <source media="(max-width:767px)"  srcset="assets/sections/header-mobile.png">
+    <source media="(max-width:1024px)" srcset="assets/sections/header-tablet.png">
+    <img src="assets/sections/header-laptop.png"
+         srcset="assets/sections/header-laptop.png 1x, assets/sections/header-4k.png 2x"
+         alt="Site header">
+  </picture>
+  <a class="hotspot" data-hotspot="header.cta" href="#" data-hotline aria-label="Talk to an expert"></a>
+</section>
+
+<!-- ==================== HERO (no hotspots) ==================== -->
+<section class="proto-section" data-section="hero">
+  <picture>
+    <source media="(max-width:767px)"  srcset="assets/sections/hero-mobile.png">
+    <source media="(max-width:1024px)" srcset="assets/sections/hero-tablet.png">
+    <img src="assets/sections/hero-laptop.png"
+         srcset="assets/sections/hero-laptop.png 1x, assets/sections/hero-4k.png 2x"
+         alt="Hero — Gig speeds for $60/month">
+  </picture>
+</section>
+
+<!-- ==================== ZIP CHECKER (instance 1) ==================== -->
+<section class="proto-section" data-zip-finder>
+  <picture>
+    <source media="(max-width:767px)"  srcset="assets/sections/zip-finder-mobile.png">
+    <source media="(max-width:1024px)" srcset="assets/sections/zip-finder-tablet.png">
+    <img src="assets/sections/zip-finder-laptop.png"
+         srcset="assets/sections/zip-finder-laptop.png 1x, assets/sections/zip-finder-4k.png 2x"
+         alt="Enter ZIP code to check availability">
+  </picture>
+  <input class="hotspot" type="text" maxlength="5" inputmode="numeric" autocomplete="postal-code"
+         aria-label="ZIP code" data-hotspot="zip-finder.input" data-zip-input>
+  <button class="hotspot" type="button" aria-label="Check Now"
+          data-hotspot="zip-finder.button" data-zip-btn></button>
+  <div class="zip-error" role="alert" aria-live="polite" data-zip-error></div>
+</section>
+
+<!-- ==================== SERVICES ==================== -->
+<section class="proto-section" data-section="services">
+  <picture>
+    <source media="(max-width:767px)"  srcset="assets/sections/services-mobile.png">
+    <source media="(max-width:1024px)" srcset="assets/sections/services-tablet.png">
+    <img src="assets/sections/services-laptop.png"
+         srcset="assets/sections/services-laptop.png 1x, assets/sections/services-4k.png 2x"
+         alt="Explore Internet For Us services">
+  </picture>
+  <a class="hotspot" data-hotspot="services.btn1" href="#" data-hotline aria-label="Explore Internet"></a>
+  <a class="hotspot" data-hotspot="services.btn2" href="#" data-hotline aria-label="Explore Mobile"></a>
+  <a class="hotspot" data-hotspot="services.btn3" href="#" data-hotline aria-label="Explore TV"></a>
+</section>
+
+<!-- ==================== DIFFERENCE ==================== -->
+<section class="proto-section" data-section="difference">
+  <picture>
+    <source media="(max-width:767px)"  srcset="assets/sections/difference-mobile.png">
+    <source media="(max-width:1024px)" srcset="assets/sections/difference-tablet.png">
+    <img src="assets/sections/difference-laptop.png"
+         srcset="assets/sections/difference-laptop.png 1x, assets/sections/difference-4k.png 2x"
+         alt="The Internet For Us difference">
+  </picture>
+  <a class="hotspot" data-hotspot="difference.btn1" href="#" data-hotline aria-label="Explore packages"></a>
+  <a class="hotspot" data-hotspot="difference.btn2" href="#" data-hotline aria-label="Contact us"></a>
+  <a class="hotspot" data-hotspot="difference.btn3" href="#" data-hotline aria-label="Explore more"></a>
+  <a class="hotspot" data-hotspot="difference.btn4" href="#" data-hotline aria-label="Explore more"></a>
+</section>
+
+<!-- ==================== ZIP CHECKER (instance 2) ==================== -->
+<section class="proto-section" data-zip-finder>
+  <picture>
+    <source media="(max-width:767px)"  srcset="assets/sections/zip-finder-mobile.png">
+    <source media="(max-width:1024px)" srcset="assets/sections/zip-finder-tablet.png">
+    <img src="assets/sections/zip-finder-laptop.png"
+         srcset="assets/sections/zip-finder-laptop.png 1x, assets/sections/zip-finder-4k.png 2x"
+         alt="Enter ZIP code to check availability">
+  </picture>
+  <input class="hotspot" type="text" maxlength="5" inputmode="numeric" autocomplete="postal-code"
+         aria-label="ZIP code" data-hotspot="zip-finder.input" data-zip-input>
+  <button class="hotspot" type="button" aria-label="Check Now"
+          data-hotspot="zip-finder.button" data-zip-btn></button>
+  <div class="zip-error" role="alert" aria-live="polite" data-zip-error></div>
+</section>
+
+<!-- ==================== WHAT WE DO (no hotspots) ==================== -->
+<section class="proto-section" data-section="what-we-do">
+  <picture>
+    <source media="(max-width:767px)"  srcset="assets/sections/what-we-do-mobile.png">
+    <source media="(max-width:1024px)" srcset="assets/sections/what-we-do-tablet.png">
+    <img src="assets/sections/what-we-do-laptop.png"
+         srcset="assets/sections/what-we-do-laptop.png 1x, assets/sections/what-we-do-4k.png 2x"
+         alt="What We Do">
+  </picture>
+</section>
+
+<!-- ==================== GUIDANCE (no hotspots) ==================== -->
+<section class="proto-section" data-section="guidance">
+  <picture>
+    <source media="(max-width:767px)"  srcset="assets/sections/guidance-mobile.png">
+    <source media="(max-width:1024px)" srcset="assets/sections/guidance-tablet.png">
+    <img src="assets/sections/guidance-laptop.png"
+         srcset="assets/sections/guidance-laptop.png 1x, assets/sections/guidance-4k.png 2x"
+         alt="Types of guidance we offer">
+  </picture>
+</section>
+
+<!-- ==================== HOW IT WORKS (no hotspots) ==================== -->
+<section class="proto-section" data-section="how-it-works">
+  <picture>
+    <source media="(max-width:767px)"  srcset="assets/sections/how-it-works-mobile.png">
+    <source media="(max-width:1024px)" srcset="assets/sections/how-it-works-tablet.png">
+    <img src="assets/sections/how-it-works-laptop.png"
+         srcset="assets/sections/how-it-works-laptop.png 1x, assets/sections/how-it-works-4k.png 2x"
+         alt="How our assistance works">
+  </picture>
+</section>
+
+<!-- ==================== WHAT WE DON'T DO (no hotspots) ==================== -->
+<section class="proto-section" data-section="what-we-dont-do">
+  <picture>
+    <source media="(max-width:767px)"  srcset="assets/sections/what-we-dont-do-mobile.png">
+    <source media="(max-width:1024px)" srcset="assets/sections/what-we-dont-do-tablet.png">
+    <img src="assets/sections/what-we-dont-do-laptop.png"
+         srcset="assets/sections/what-we-dont-do-laptop.png 1x, assets/sections/what-we-dont-do-4k.png 2x"
+         alt="What we do not do">
+  </picture>
+</section>
+
+<!-- ==================== WHY INDEPENDENT (no hotspots) ==================== -->
+<section class="proto-section" data-section="why-independent">
+  <picture>
+    <source media="(max-width:767px)"  srcset="assets/sections/why-independent-mobile.png">
+    <source media="(max-width:1024px)" srcset="assets/sections/why-independent-tablet.png">
+    <img src="assets/sections/why-independent-laptop.png"
+         srcset="assets/sections/why-independent-laptop.png 1x, assets/sections/why-independent-4k.png 2x"
+         alt="Why independent support matters">
+  </picture>
+</section>
+
+<!-- ==================== FAQ ====================
+     Captured collapsed, no expand interaction — out of the explicitly
+     requested scope (popup + CTA calls). Say if you want this wired up
+     too; it would need expanded/collapsed image pairs per question. -->
+<section class="proto-section" data-section="faq">
+  <picture>
+    <source media="(max-width:767px)"  srcset="assets/sections/faq-mobile.png">
+    <source media="(max-width:1024px)" srcset="assets/sections/faq-tablet.png">
+    <img src="assets/sections/faq-laptop.png"
+         srcset="assets/sections/faq-laptop.png 1x, assets/sections/faq-4k.png 2x"
+         alt="Frequently asked questions">
+  </picture>
+</section>
+
+<!-- ==================== PRIVACY POLICY SUMMARY ==================== -->
+<section class="proto-section" id="privacy-policy" data-section="privacy-policy">
+  <picture>
+    <source media="(max-width:767px)"  srcset="assets/sections/privacy-policy-mobile.png">
+    <source media="(max-width:1024px)" srcset="assets/sections/privacy-policy-tablet.png">
+    <img src="assets/sections/privacy-policy-laptop.png"
+         srcset="assets/sections/privacy-policy-laptop.png 1x, assets/sections/privacy-policy-4k.png 2x"
+         alt="Privacy Policy Summary">
+  </picture>
+  <a class="hotspot" data-hotspot="privacy-policy.email" href="mailto:info@internetforus.com" aria-label="Email info@internetforus.com"></a>
+  <a class="hotspot" data-hotspot="privacy-policy.call" href="#" data-hotline aria-label="Call us"></a>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<section class="proto-section" data-section="footer">
+  <picture>
+    <source media="(max-width:767px)"  srcset="assets/sections/footer-mobile.png">
+    <source media="(max-width:1024px)" srcset="assets/sections/footer-tablet.png">
+    <img src="assets/sections/footer-laptop.png"
+         srcset="assets/sections/footer-laptop.png 1x, assets/sections/footer-4k.png 2x"
+         alt="Footer">
+  </picture>
+  <a class="hotspot" data-hotspot="footer.call" href="#" data-hotline aria-label="Toll free call"></a>
+  <a class="hotspot" data-hotspot="footer.privacy" href="#privacy-policy" aria-label="Privacy Policy"></a>
+</section>
+
+</main>
+
+<!-- ==================== ZIP AVAILABILITY MODAL ====================
+     Copied verbatim from the live index.html — same markup, same
+     js/main.js logic ported into prototype.js, so behavior is identical. -->
+<div class="modal" id="zip-modal" role="dialog" aria-modal="true" aria-labelledby="zip-modal-title">
+  <div class="modal-content">
+    <button type="button" class="modal-close" data-modal-close aria-label="Close popup">&times;</button>
+    <div class="modal-icon">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M20 6L9 17l-5-5" stroke="#34A2E2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="modal-congrats" id="zip-modal-title"><strong>Congratulations!</strong></div>
+    <p class="modal-agents">5 agents are available</p>
+    <a href="#" class="hotline-btn" data-hotline data-label="Connect Hotline">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Connect Hotline
+    </a>
+  </div>
+</div>
+
+<script src="js/prototype.js"></script>
+</body>
+</html>

@@ -17,7 +17,8 @@ assets/screenshots/
 # tracked; the installed dependency tree is not)
 scripts/node_modules/
 
-# Generated prototype assets (regenerate with scripts/capture-sections.mjs;
-# see prototype/README.md)
+# Generated prototype assets (regenerate with scripts/capture-sections.mjs
+# and scripts/build-hotspot-css.mjs; see prototype/README.md)
 prototype/assets/sections/
 prototype/hotspots.json
+prototype/css/hotspots.generated.css
